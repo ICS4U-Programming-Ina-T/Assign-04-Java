@@ -66,12 +66,12 @@ public class TriangleInventory {
                             System.out.println(NEGATIVE_NUM);
                             continue;
                         }
-                
+
                         while (sideCInt <= 0) {
                             // asks user for third side length
                             System.out.println("Enter a number for side length C: ");
                             sideCString = sc.nextLine();
-                            
+
                             try {
                                 sideCInt = Integer.parseInt(sideCString);
                                 
@@ -79,13 +79,13 @@ public class TriangleInventory {
                                     System.out.println(NEGATIVE_NUM);
                                     continue;
                                 }
-                                
+
                                 // INSERT REMAINING CODE HERE!!
                                 myTriangle = new Triangle(sideA, sideB, sideC);
                                 
                                 // check if triangle is valid
                                 myTriangle.isTriangleValid();
-                                
+
                                 if (myTriangle.isTriangleValid == true) {
                                     myTriangle.calcArea();
                                     myTriangle.calcPer();
@@ -97,12 +97,12 @@ public class TriangleInventory {
                                 System.out.print(INVALID_STRING);
                             }
                         }
-                        
+
                     } catch (IllegalArgumentException exception) {
                         System.out.print(INVALID_STRING);
                     }
                 }
-                
+
             } catch (IllegalArgumentException exception) {
                 System.out.print(INVALID_STRING);
             }
