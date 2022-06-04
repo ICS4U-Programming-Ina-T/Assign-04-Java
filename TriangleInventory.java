@@ -1,3 +1,12 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * The Triangle program implements an application that
  * uses a recursive function to print an hourglass pattern
@@ -10,102 +19,118 @@
 
 public class TriangleInventory {
     /**
-     * Constant for invalid string.
+     * Declaring constant for console formatting.
      */
-    private static final String INVALID_STRING = "Value cannot be accepted.\n";
+    private static final String CONSOLE_SEPARATOR =
+        "--------------------------";
     /**
-     * Constant for negative numbers.
+     * Declaring constant for carriage return.
      */
-    private static final String NEGATIVE_NUM = "Number must be greater than 0.\n";
-    
-    /**
-     * Empty constructor.
-     */
-    public TriangleInventory() { }
-    
+    private static final String CAR_RETURN = "\n";
+
     /**
      * Main entry into the program.
      *
-     * @param args nothings passed in
+     * @param args nothing passed in
      */
     public static void main(String[] args) {
-        // create a triangle
-        Triangle myTriangle;
-        
         // declaring variables
-        final Scanner sc = new Scanner(System.in);
-        String sideAString;
-        String sideBString;
-        String sideCString;
-        int sideAInt = 0;
-        int sideBInt = 0;
-        int sideCInt = 0;
-        
-        while (sideAInt <= 0) {
-            // asks user for first side length
-            System.out.println("Enter a number for side length A: ");
-            sideAString = sc.nextLine();
-            
-            try {
-                sideAInt = Integer.parseInt(sideAString);
-                
-                if (sideAInt <= 0) {
-                    System.out.println(NEGATIVE_NUM);
-                    continue;
+        List<String> listOfSides = new ArrayList<String>();
+        String[] lengthsArrayFile;
+        BufferedWriter writer;
+        StringBuilder builder = new StringBuilder();
+
+        // reads contents of file into list
+        try {
+            listOfSides = Files.readAllLines(Paths.get("input.txt"));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+
+        lengthsArrayFile = listOfSides.toArray(new String[0]);
+
+        try {
+            // calls function and passes each element in the array
+            for (int loopCounter = 0; loopCounter
+                < lengthsArrayFile.length; loopCounter++) {
+                List<String> tempList = new ArrayList<String>(Arrays.asList(
+                    lengthsArrayFile[loopCounter].split(" ")));
+
+                for (int i = 0; i < tempList.size(); i++) {
+                    Double.parseDouble(tempList.toArray(new String[0])[i]);
                 }
 
-                while (sideBInt <= 0) {
-                    // asks user for second side length
-                    System.out.println("Enter a number for side length B: ");
-                    sideBString = sc.nextLine();
-                    
-                    try {
-                        sideBInt = Integer.parseInt(sideBString);
-                        
-                        if (sideBInt <= 0) {
-                            System.out.println(NEGATIVE_NUM);
-                            continue;
-                        }
+                Triangle myTriangle =
+                    new Triangle(Double.parseDouble(
+                        tempList.get(0)), Double.parseDouble(
+                            tempList.get(1)), Double.parseDouble(
+                                tempList.get(2)));
 
-                        while (sideCInt <= 0) {
-                            // asks user for third side length
-                            System.out.println("Enter a number for side length C: ");
-                            sideCString = sc.nextLine();
+                // check if triangle is valid
+                if (myTriangle.isTriangleValid()) {
+                    // declaring triangle number
+                    int triangleNum = loopCounter + 1;
 
-                            try {
-                                sideCInt = Integer.parseInt(sideCString);
-                                
-                                if (sideCInt <= 0) {
-                                    System.out.println(NEGATIVE_NUM);
-                                    continue;
-                                }
+                    // adds triangle information to the output file
+                    builder.append("Triangle " + triangleNum + ":\n");
+                    builder.append("The side lengths of this triangle are "
+                        + tempList.get(0) + "ft, "
+                        + tempList.get(1) + "ft, and "
+                        + tempList.get(2) + "ft.\n" + "The height is "
+                        + myTriangle.calcHeight() + " ft.\n"
+                        + "It has an area of "
+                        + myTriangle.calcArea() + " ft^2 and a perimeter of "
+                        + myTriangle.calcPer() + " ft.\nIt is "
+                        + myTriangle.typeByAngle() + " with a "
+                        + myTriangle.typeBySide() + " angle.\nThe angle"
+                        + " between sides a and b is "
+                        + myTriangle.triangleAngle().get(2) + " degrees.\n"
+                        + "The angle between sides a and c is "
+                        + myTriangle.triangleAngle().get(1) + " degrees.\n"
+                        + "The angle between sides b and c is "
+                        + myTriangle.triangleAngle().get(0) + " degrees.");
 
-                                // INSERT REMAINING CODE HERE!!
-                                myTriangle = new Triangle(sideA, sideB, sideC);
-                                
-                                // check if triangle is valid
-                                myTriangle.isTriangleValid();
+                    writer =
+                        new BufferedWriter(new FileWriter(
+                            "/home/ubuntu/environment"
+                            + "/Assign/Assign-04/Assign-04"
+                            + "-Java/output.txt"));
+                    writer.write(builder.toString());
 
-                                if (myTriangle.isTriangleValid == true) {
-                                    myTriangle.calcArea();
-                                    myTriangle.calcPer();
-                                } else {
-                                    System.out.print("Triangle is not valid.");
-                                }
+                    builder.append("\n\n");
+                    writer.close();
+                } else {
+                    // declaring triangle number
+                    int triangleNum = loopCounter + 1;
 
-                            } catch (IllegalArgumentException exception) {
-                                System.out.print(INVALID_STRING);
-                            }
-                        }
+                    // adds triangle information to the output file
+                    builder.append("Triangle " + triangleNum + ":\n");
+                    builder.append("The side lengths of this triangle are "
+                        + tempList.get(0) + "ft, "
+                        + tempList.get(1) + "ft, and "
+                        + tempList.get(2) + "ft");
+                    builder.append("\nIt is not valid.");
 
-                    } catch (IllegalArgumentException exception) {
-                        System.out.print(INVALID_STRING);
-                    }
+                    writer =
+                        new BufferedWriter(new FileWriter(
+                            "/home/ubuntu/environment"
+                            + "/Assign/Assign-04/Assign-04"
+                            + "-Java/output.txt"));
+                    writer.write(builder.toString());
+
+                    builder.append(CAR_RETURN + CAR_RETURN);
+                    writer.close();
                 }
-
-            } catch (IllegalArgumentException exception) {
-                System.out.print(INVALID_STRING);
             }
+
+            // alerts user triangle info is done being calculated
+            System.out.println("Done triangle calaculations."
+                + " Look below and check the output file.");
+            System.out.println(CONSOLE_SEPARATOR);
+
+            System.out.println(CONSOLE_SEPARATOR);
+        } catch (IOException exception) {
+            exception.printStackTrace();
         }
     }
 }
