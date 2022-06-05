@@ -1,12 +1,12 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The Triangle program implements an application that
- * uses a recursive function to print an hourglass pattern
- * of asterisks based on the number entered by the user.
+ * uses calculates various characteristics of a triangle
+ * including the area, perimeter, height, etc.
  *
  * @author  Ina Tolo
  * @version 1.0
@@ -14,6 +14,10 @@ import java.math.RoundingMode;
  */
 
 public class Triangle {
+    /**
+     * Declaring constant for ANGLE_SUM.
+     */
+    private static final double ANGLE_SUM = 180;
     /**
      * Property for _sideA.
      */
@@ -48,11 +52,12 @@ public class Triangle {
      */
     protected boolean isTriangleValid() {
         // declaring valid variable
-        boolean valid;
+        final boolean valid;
 
-        if ((_sideA + _sideB > _sideC) 
-            && (_sideB + _sideC > _sideA)
-            && (_sideC + _sideA > _sideB)) {
+        // checks if sums of side lengths can create a triangle
+        if (_sideA + _sideB > _sideC
+            && _sideB + _sideC > _sideA
+            && _sideC + _sideA > _sideB) {
             valid = true;
         } else {
             valid = false;
@@ -67,19 +72,19 @@ public class Triangle {
      */
     public double calcArea() {
         // calculates the semiperimeter
-        double semiP = (_sideA + _sideB + _sideC) / 2;
+        final double semiP = (_sideA + _sideB + _sideC) / 2;
 
-        double area =
+        final double area =
             Math.sqrt(semiP * (semiP - _sideA)
                 * (semiP - _sideB) * (semiP - _sideC));
 
         // rounds area to two decimals
-        /* https://mkyong.com/java/how-to
+        /* Code from: https://mkyong.com/java/how-to
         -round-double-float-value-to-2-decimal-points-in-java/*/
-        BigDecimal roundedArea =
+        final BigDecimal roundedArea =
             new BigDecimal(area).setScale(2, RoundingMode.HALF_UP);
 
-        double finalArea = roundedArea.doubleValue();
+        final double finalArea = roundedArea.doubleValue();
 
         return finalArea;
     }
@@ -90,13 +95,14 @@ public class Triangle {
      * @return finalPer to main function
      */
     public double calcPer() {
-        double perimeter = _sideA + _sideB + _sideC;
+        // adds up all sides
+        final double perimeter = _sideA + _sideB + _sideC;
 
         // rounds perimeter to two decimals
-        BigDecimal roundedPer =
+        final BigDecimal roundedPer =
             new BigDecimal(perimeter).setScale(2, RoundingMode.HALF_UP);
 
-        double finalPer = roundedPer.doubleValue();
+        final double finalPer = roundedPer.doubleValue();
 
         return finalPer;
     }
@@ -108,7 +114,7 @@ public class Triangle {
      */
     public String typeBySide() {
         // declaring variables
-        List<Double> listOfSides = new ArrayList<Double>();
+        final List<Double> listOfSides = new ArrayList<Double>();
         double longestSide = -1;
         String anglesType = "";
 
@@ -155,9 +161,9 @@ public class Triangle {
         // checks if side lengths are equal
         if (_sideA == _sideB && _sideA == _sideC) {
             sidesType = "equilateral";
-        } else if ((_sideA == _sideB && _sideA != _sideC)
-            || (_sideA == _sideC && _sideA != _sideB)
-            || (_sideB == _sideC && _sideB != _sideA)) {
+        } else if (_sideA == _sideB && _sideA != _sideC
+            || _sideA == _sideC && _sideA != _sideB
+            || _sideB == _sideC && _sideB != _sideA) {
             sidesType = "isosceles";
         } else {
             sidesType = "scalene";
@@ -173,39 +179,39 @@ public class Triangle {
      */
     public List<Double> triangleAngle() {
         // declaring variables
-        List<Double> listOfAngles = new ArrayList<Double>();
-        double angleAStepOne;
-        double angleBStepOne;
-        double angleCStepOne;
-        double angleAStepTwo;
-        double angleBStepTwo;
-        double angleA;
-        double angleB;
-        double angleC;
+        final List<Double> listOfAngles = new ArrayList<Double>();
+        final double aStepOne;
+        final double bStepOne;
+        final double cStepOne;
+        final double aStepTwo;
+        final double bStepTwo;
+        final double angleA;
+        final double angleB;
+        final double angleC;
 
         // calculating angle A
-        angleAStepOne = ((Math.pow(_sideB, 2)
+        aStepOne = ((Math.pow(_sideB, 2)
             + Math.pow(_sideC, 2))
             - Math.pow(_sideA, 2)) / (2 * (_sideB * _sideC));
-        angleAStepTwo = Math.toDegrees(Math.acos(angleAStepOne));
-        BigDecimal angleAStepThree =
-            new BigDecimal(angleAStepTwo).setScale(2, RoundingMode.HALF_UP);
-        angleA = angleAStepThree.doubleValue();
+        aStepTwo = Math.toDegrees(Math.acos(aStepOne));
+        final BigDecimal aStepThree =
+            new BigDecimal(aStepTwo).setScale(2, RoundingMode.HALF_UP);
+        angleA = aStepThree.doubleValue();
 
         // calculating angle B
-        angleBStepOne = ((Math.pow(_sideC, 2)
+        bStepOne = ((Math.pow(_sideC, 2)
             + Math.pow(_sideA, 2))
             - Math.pow(_sideB, 2)) / (2 * (_sideC * _sideA));
-        angleBStepTwo = Math.toDegrees(Math.acos(angleBStepOne));
-        BigDecimal angleBStepThree =
-            new BigDecimal(angleBStepTwo).setScale(2, RoundingMode.HALF_UP);
-        angleB = angleBStepThree.doubleValue();
+        bStepTwo = Math.toDegrees(Math.acos(bStepOne));
+        final BigDecimal bStepThree =
+            new BigDecimal(bStepTwo).setScale(2, RoundingMode.HALF_UP);
+        angleB = bStepThree.doubleValue();
 
         // calculating angle C
-        angleCStepOne = 180 - (angleA + angleB);
-        BigDecimal angleCStepTwo =
-            new BigDecimal(angleCStepOne).setScale(2, RoundingMode.HALF_UP);
-        angleC = angleCStepTwo.doubleValue();
+        cStepOne = ANGLE_SUM - (angleA + angleB);
+        final BigDecimal cStepTwo =
+            new BigDecimal(cStepOne).setScale(2, RoundingMode.HALF_UP);
+        angleC = cStepTwo.doubleValue();
 
         // adds each angle to a list
         listOfAngles.add(angleA);
@@ -221,26 +227,30 @@ public class Triangle {
      * @return finalHeight to main function
      */
     public double calcHeight() {
-        double semiP = (_sideA + _sideB + _sideC) / 2;
+        // calculates semiperimeter
+        final double semiP = (_sideA + _sideB + _sideC) / 2;
 
-        double area =
+        // calculates area
+        final double area =
             Math.sqrt(semiP * (semiP - _sideA)
                 * (semiP - _sideB) * (semiP - _sideC));
 
         // rounds area to two decimals
         /* https://mkyong.com/java/how-to-round
         -double-float-value-to-2-decimal-points-in-java/*/
-        BigDecimal roundedArea =
+        final BigDecimal roundedArea =
             new BigDecimal(area).setScale(2, RoundingMode.HALF_UP);
 
-        double finalArea = roundedArea.doubleValue();
+        final double finalArea = roundedArea.doubleValue();
 
-        double height = 2 * (finalArea / _sideA);
+        // calculates height
+        final double height = 2 * (finalArea / _sideA);
 
-        BigDecimal roundedHeight =
+        // rounds height to two decimal places
+        final BigDecimal roundedHeight =
             new BigDecimal(height).setScale(2, RoundingMode.HALF_UP);
 
-        double finalHeight = roundedHeight.doubleValue();
+        final double finalHeight = roundedHeight.doubleValue();
 
         return finalHeight;
     }

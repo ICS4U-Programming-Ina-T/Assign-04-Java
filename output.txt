@@ -1,14 +1,23 @@
 Triangle 1:
-The side lengths of this triangle are 6ft, 6ft, and 5ft.
-The height is 4.55 ft.
-It has an area of 13.64 ft^2 and a perimeter of 17.0 ft.
-It is isosceles with a acute angle.
-The angle between sides a and b is 49.24 degrees.
-The angle between sides a and c is 65.38 degrees.
-The angle between sides b and c is 65.38 degrees.
+The side lengths of this triangle are 5 ft, 12 ft, and 13 ft.
+The height is 12.0 ft.
+It has an area of 30.0 ft^2 and a perimeter of 30.0 ft.
+It is scalene with a right angle.
+The angle between sides a and b is 90.0 degrees.
+The angle between sides a and c is 67.38 degrees.
+The angle between sides b and c is 22.62 degrees.
 
 Triangle 2:
-The side lengths of this triangle are 8.2ft, 8.2ft, and 8.2ft.
+The side lengths of this triangle are 11 ft, 3 ft, and 9 ft.
+The height is 2.01 ft.
+It has an area of 11.05 ft^2 and a perimeter of 23.0 ft.
+It is scalene with a obtuse angle.
+The angle between sides a and b is 42.07 degrees.
+The angle between sides a and c is 12.9 degrees.
+The angle between sides b and c is 125.03 degrees.
+
+Triangle 3:
+The side lengths of this triangle are 8.2 ft, 8.2 ft, and 8.2 ft.
 The height is 7.1 ft.
 It has an area of 29.12 ft^2 and a perimeter of 24.6 ft.
 It is equilateral with a acute angle.
@@ -16,24 +25,33 @@ The angle between sides a and b is 60.0 degrees.
 The angle between sides a and c is 60.0 degrees.
 The angle between sides b and c is 60.0 degrees.
 
-Triangle 3:
-The side lengths of this triangle are 1ft, 2ft, and 3ft
-It is not valid.
-
 Triangle 4:
-The side lengths of this triangle are 4ft, 7ft, and 8ft.
-The height is 7.0 ft.
-It has an area of 14.0 ft^2 and a perimeter of 19.0 ft.
-It is scalene with a acute angle.
-The angle between sides a and b is 88.98 degrees.
-The angle between sides a and c is 61.03 degrees.
-The angle between sides b and c is 29.99 degrees.
+The side lengths of this triangle are 5 ft, 14 ft, and 10 ft.
+The height is 7.04 ft.
+It has an area of 17.61 ft^2 and a perimeter of 29.0 ft.
+It is scalene with a obtuse angle.
+The angle between sides a and b is 30.2 degrees.
+The angle between sides a and c is 135.23 degrees.
+The angle between sides b and c is 14.57 degrees.
 
 Triangle 5:
-The side lengths of this triangle are 3ft, 4ft, and 5ft.
-The height is 4.0 ft.
-It has an area of 6.0 ft^2 and a perimeter of 12.0 ft.
-It is scalene with a right angle.
-The angle between sides a and b is 90.0 degrees.
-The angle between sides a and c is 53.13 degrees.
-The angle between sides b and c is 36.87 degrees.
+The side lengths of this triangle are 14.9 ft, 6.7 ft, and 14.9 ft.
+The height is 6.53 ft.
+It has an area of 48.64 ft^2 and a perimeter of 36.5 ft.
+It is isosceles with a acute angle.
+The angle between sides a and b is 77.0 degrees.
+The angle between sides a and c is 25.99 degrees.
+The angle between sides b and c is 77.01 degrees.
+
+Triangle 6:
+The side lengths of this triangle are 16 ft, 16 ft, and 12 ft.
+The height is 11.12 ft.
+It has an area of 88.99 ft^2 and a perimeter of 44.0 ft.
+It is isosceles with a acute angle.
+The angle between sides a and b is 44.04 degrees.
+The angle between sides a and c is 67.98 degrees.
+The angle between sides b and c is 67.98 degrees.
+
+Triangle 7:
+The side lengths of this triangle are 1 ft, 2 ft, and 3 ft
+It is not valid.
